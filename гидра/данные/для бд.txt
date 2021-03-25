@@ -1,5 +1,0 @@
-таблицы: list; chern
-в list записываются все считывания карточки
-в chern хранятся данные о пользователе и код карты
-в list есть id_user, name, datetime
-в chern есть id_user, id_card, name

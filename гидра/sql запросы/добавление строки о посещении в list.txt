@@ -1,1 +1,0 @@
-INSERT INTO list VALUES(id,name,time)

@@ -2,17 +2,19 @@
 
 for ($x=0; $x>-1; $x++){
 	
-	$cards = file(cods_from_arduino.txt, FILE_USE_INCLUDE_PATH, ?):array;
+	include_once('C:\Users\d.s.aleksandrov\Desktop\гидра\GIDRA-system\connection.php');
 	
-	require_once 'connection.php'; // подключаем скрипт
-	 
-		// подключаемся к серверу
-		$link = mysqli_connect($host, $user, $password, $database) 
-	    	or die("Ошибка " . mysqli_error($link));
-	 
-		// выполняем операции с базой данных
+	$cards = file('C:\Users\d.s.aleksandrov\Desktop\гидра\GIDRA-system\cods_from_arduino.txt', FILE_USE_INCLUDE_PATH);
 	
-	for ($i=0, $i<count($cards), i++){
+	$link = mysqli_connect($host, $user, $password, $database);
+	
+	if (!$link) {
+		die('Ошибка подключения (' . mysqli_connect_errno() . ') '
+            . mysqli_connect_error());
+}
+		
+	
+	for ($i=0; $i<count($cards); i+1){
 		
 		$id_user_res = "SELECT id_user FROM user-card WHERE id_card='$cards[i]'";
 
@@ -23,10 +25,8 @@ for ($x=0; $x>-1; $x++){
 		}
 
 		$date = new DateTime();
-		$date->setDate(int $year, int $month, int $day);
-		$date->setTime(int $hour, int $minute [, int $second ]);
 
-		$list_res = "INSERT INTO user-time VALUES($id_user,$date)"
+		$list_res = "INSERT INTO user-time VALUES($id_user,$date)";
 
 		$list = mysqli_query($link, $list_res) or die("Ошибка " . mysqli_error($link));
 		if($list)
@@ -34,8 +34,9 @@ for ($x=0; $x>-1; $x++){
 			echo "Выполнение запроса на добавление записи об отметке прошло успешно";
 		}
 
-		// закрываем подключение
 		mysqli_close($link);
+		
+	}
 	
 	sleep(60);
 }

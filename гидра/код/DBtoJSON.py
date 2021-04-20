@@ -1,8 +1,22 @@
 import pymysql
+import json
 
-db = pymysql.connect(host='37.140.192.206',user='u0731055_gidra', passwd='8T4d3K0t')
-cursor = db.cursor()
-query = ("SHOW DATABASES")
-cursor.execute(query)
-for r in cursor:
-    print(r)
+# подключение к БД
+connection = pymysql.connect(host="localhost",user="root",passwd="",database="gydra" )
+cursor = connection.cursor()
+# запрос
+cursor.execute("SELECT * FROM `user-name`")
+rows = cursor.fetchall()
+# формирование ответа
+response = {}
+for row in rows:
+   response[row[0]] = [row[1], row[2], row[3]]
+
+# response = []
+# for row in rows:
+#    response.append([row[1], row[2], row[3]])
+
+with open('data.json', 'w') as f:
+    json.dump(response, f)
+
+connection.close()

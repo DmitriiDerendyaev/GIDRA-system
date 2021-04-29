@@ -1,3 +1,0 @@
-SELECT id_user FROM chern WHERE id_card='полученный айди карты'
-
-SELECT name FROM chern WHERE id_card='полученный айди карты'

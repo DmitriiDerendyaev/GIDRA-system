@@ -1,6 +1,6 @@
 <?php
 $host = 'localhost'; // ����� ������� 
-$database = 'testovaya'; // ��� ���� ������
+$database = 'lastest'; // ��� ���� ������
 $user = 'root'; // ��� ������������
 $password = ''; // ������
 ?>
